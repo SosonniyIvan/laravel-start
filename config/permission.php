@@ -186,25 +186,25 @@ return [
     'permissions' => [
         'categories' => [
             'publish' => 'publish categories',
-            'edit'  =>'edit categories',
-            'delete'  => 'delete categories'
+            'edit' => 'edit categories',
+            'delete' => 'delete categories',
         ],
         'products' => [
             'publish' => 'publish products',
-            'edit'  =>'edit products',
-            'delete'  => 'delete products'
+            'edit' => 'edit products',
+            'delete' => 'delete products',
         ],
         'orders' => [
-            'edit'  =>'edit orders',
-            'delete'  => 'delete orders'
+            'edit' => 'edit orders',
+            'delete' => 'delete orders',
         ],
-        'users'  => [
-            'edit'  =>'edit users',
-            'delete'  => 'delete users'
+        'users' => [
+            'edit' => 'edit users',
+            'delete' => 'delete users',
         ],
         'account' => [
-            'edit'  =>'edit account',
-            'delete'  => 'delete account'
-        ]
-    ]
+            'edit' => 'edit account',
+            'delete' => 'delete account',
+        ],
+    ],
 ];
