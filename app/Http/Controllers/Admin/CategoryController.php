@@ -23,7 +23,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //іваіваіваіваіаваі
     }
 
     /**
@@ -31,7 +31,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //іаввіааівві
     }
 
     /**
@@ -39,7 +39,7 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //віаіваіва
     }
 
     /**
@@ -47,7 +47,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //іваіваіва
     }
 
     /**
@@ -55,6 +55,6 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //іваіваіва
     }
 }

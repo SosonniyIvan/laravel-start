@@ -19,6 +19,8 @@ class ProductRepository implements Contract\ProductsRepositoryInterface
 
             $product = Product::create($data['attributes']);
 
+            $this->setProductData($product, $data);
+
             DB::commit();
 
             return $product;
@@ -26,6 +28,17 @@ class ProductRepository implements Contract\ProductsRepositoryInterface
             DB::rollBack();
             logs()->warning($exception);
             return false;
+        }
+    }
+
+    protected function setProductData(Product $product, array $data): void
+    {
+        if ($product->categories()->exists()){
+            $product->categories()->detach();
+        }
+
+        if (!empty($data['categories'])){
+            $product->categories()->attach($data['categories']);
         }
     }
 
