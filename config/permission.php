@@ -10,7 +10,7 @@ return [
          * is often just the "Permission" model but you may use whatever you like.
          *
          * The model you want to use as a Permission model needs to implement the
-         * `Spatie\Permission\Contracts\Permission` contract.
+         * `Spatie\Permission\Contract\Permission` contract.
          */
 
         'permission' => Spatie\Permission\Models\Permission::class,
@@ -21,7 +21,7 @@ return [
          * is often just the "Role" model but you may use whatever you like.
          *
          * The model you want to use as a Role model needs to implement the
-         * `Spatie\Permission\Contracts\Role` contract.
+         * `Spatie\Permission\Contract\Role` contract.
          */
 
         'role' => Spatie\Permission\Models\Role::class,
@@ -186,25 +186,25 @@ return [
     'permissions' => [
         'categories' => [
             'publish' => 'publish categories',
-            'edit'  =>'edit categories',
-            'delete'  => 'delete categories'
+            'edit' => 'edit categories',
+            'delete' => 'delete categories',
         ],
         'products' => [
             'publish' => 'publish products',
-            'edit'  =>'edit products',
-            'delete'  => 'delete products'
+            'edit' => 'edit products',
+            'delete' => 'delete products',
         ],
         'orders' => [
-            'edit'  =>'edit orders',
-            'delete'  => 'delete orders'
+            'edit' => 'edit orders',
+            'delete' => 'delete orders',
         ],
-        'users'  => [
-            'edit'  =>'edit users',
-            'delete'  => 'delete users'
+        'users' => [
+            'edit' => 'edit users',
+            'delete' => 'delete users',
         ],
         'account' => [
-            'edit'  =>'edit account',
-            'delete'  => 'delete account'
-        ]
-    ]
+            'edit' => 'edit account',
+            'delete' => 'delete account',
+        ],
+    ],
 ];
