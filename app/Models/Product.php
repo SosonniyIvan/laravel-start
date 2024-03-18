@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\Contract\FileStorageServiceInterface;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,7 +16,14 @@ class Product extends Model
 {
     use HasFactory, Sortable;
 
-    protected $fillable = ['slug', 'title', 'description', 'SKU', 'price', 'new_price', 'quantity', 'thumbnail'];
+    protected $fillable = ['slug',
+        'title',
+        'description',
+        'SKU',
+        'price',
+        'new_price',
+        'quantity',
+        'thumbnail'];
 
     public $sortable = ['id', 'title', 'SKU', 'price', 'quantity'];
 
@@ -27,6 +35,11 @@ class Product extends Model
     public function images(): MorphMany
     {
         return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function scopeAvailable(Builder $query): Builder
+    {
+        return $query->where('quantity', '>', 0);
     }
 
     public function thumbnailUrl(): Attribute

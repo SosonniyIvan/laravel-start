@@ -35,15 +35,9 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request, ProductsRepositoryInterface $repository)
     {
-        return $repository->create($request)? redirect()->route('admin.products.index') : redirect()->back()->withInput();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
-    {
-        //
+        return $repository->create($request)
+            ? redirect()->route('admin.products.index')
+            : redirect()->back()->withInput();
     }
 
     /**
@@ -51,17 +45,20 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+        $productCategories = $product->categories()->get()->pluck('id')->toArray();
+
+        return view('admin/products/edit', compact('product', 'categories', 'productCategories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(EditProductRequest $request, Product $product)
+    public function update(EditProductRequest $request, Product $product, ProductsRepositoryInterface $repository)
     {
-        $product->update($request->validated());
-
-        return redirect()->route('admin.products.index');
+        $product->update($product, $request)
+        ? redirect()->route('admin.products.edit', $product)
+        : redirect()->back()->withInput();
     }
 
     /**
@@ -69,6 +66,9 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->categories()->detach();
+        $product->delete();
+
+        return view(redirect()->route('admin.products.index'));
     }
 }
