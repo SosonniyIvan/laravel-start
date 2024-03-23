@@ -20,13 +20,13 @@ class ProductsController extends Controller
         $gallery = collect($product->images()->get()->map(fn($image) => $image->url));
 
         $gallery->prepend($product->thumbnailUrl());
-        $rowId = $this->gerProductFromCart($product)?->rowId;
+        $rowId = $this->getProductFromCart($product)?->rowId;
         $isInCart = !!$rowId;
 
         return view('products.show', compact('product', 'gallery', 'isInCart'));
     }
 
-    protected function gerProductFromCart(Product $product): ?CartItem
+    protected function getProductFromCart(Product $product): ?CartItem
     {
         return Cart::instance('cart')
             ->content()
