@@ -17,9 +17,9 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
-        $childs = $category->children();
-        $categories = Category::paginate(12);
-        $product = (new \App\Models\Category)->products();
-        return view('categories.show', compact('category', 'childs', 'categories', 'product'));
+        $category->load('children', 'products');
+        $products = $category->products()->paginate(3);
+
+        return view('categories.show', compact('category', 'products'));
     }
 }
