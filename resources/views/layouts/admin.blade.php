@@ -13,6 +13,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <link href="{{ asset('css/iziToast.css') }}" rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/scss/admin/admin.scss', 'resources/js/app.js'])
 </head>

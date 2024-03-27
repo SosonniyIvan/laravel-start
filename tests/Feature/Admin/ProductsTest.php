@@ -4,7 +4,7 @@ namespace Tests\Feature\Admin;
 
 use App\Models\Product;
 use App\Models\User;
-use App\Services\Contract\FileStorageServiceInterface;
+use App\Services\Interface\FileStorageServiceInterface;
 use App\Services\FileStorageService;
 use Database\Seeders\AdminSeeder;
 use Database\Seeders\PermissionSeeder;
