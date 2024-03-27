@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('test', function (){
-    app(\App\Services\Contract\FileStorageServiceInterface::class)->remove('test');
+    app(\App\Services\Interface\FileStorageServiceInterface::class)->remove('test');
 });
 
 Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
@@ -23,6 +23,18 @@ Route::resource('products', \App\Http\Controllers\ProductsController::class)->on
 Route::resource('categories', \App\Http\Controllers\CategoriesController::class)->only(['index', 'show']);
 
 Auth::routes();
+
+Route::name('ajax.')->prefix('ajax')->middleware('auth')->group(function () {
+    Route::group(['role:admin|moderator'], function () {
+        Route::post('products/{product}/images', [\App\Http\Controllers\Ajax\Products\ImagesController::class, 'store'])->name('products.images.store');
+        Route::delete('images/{image}', \App\Http\Controllers\Ajax\RemoveImagesController::class)->name('images.destroy');
+    });
+
+    Route::prefix('paypal')->name('paypal.')->group(function(){
+        Route::post('order/create', [\App\Http\Controllers\Ajax\Paypal\PaypalController::class, 'create'])->name('create');
+        Route::post('order/{orderId}/capture', [\App\Http\Controllers\Ajax\Paypal\PaypalController::class, 'capture'])->name('capture');
+    });
+});
 
 Route::name('admin.')->prefix('admin')->middleware(['role admin|moderator'])->group(function (){
    Route::get('dashboard', \App\Http\Controllers\Admin\DashBoardController::class)->name('dashboard');//admin.dashboard
@@ -37,4 +49,5 @@ Route::name('cart.')->prefix('cart')->group(function (){
 });
 Route::middleware(['auth'])->group(function(){
     Route::get('checkout', \App\Http\Controllers\CheckoutController::class)->name('checkout');
+    Route::get('orders/{order}/paypal/thank-you', \App\Http\Controllers\Orders\PaypalController::class);
 });

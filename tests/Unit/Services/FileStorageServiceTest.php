@@ -3,7 +3,7 @@
 namespace Tests\Unit\Services;
 
 
-use App\Services\Contract\FileStorageServiceInterface;
+use App\Services\Interface\FileStorageServiceInterface;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\TestCase;

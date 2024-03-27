@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
-class FileStorageService implements Contract\FileStorageServiceInterface
+class FileStorageService implements Interface\FileStorageServiceInterface
 {
     public function upload(string|UploadedFile $file, string $additionalPath = ''): string
     {
